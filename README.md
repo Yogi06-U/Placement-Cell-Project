@@ -9,7 +9,7 @@ Before running the Flask application, it's essential to create a virtual environ
 
 Database Configuration :
 In the database.py file, you must enter your database password. 
-Create a database named- ""Create the SQL tables in SQL-workbench. Afterward, you can insert some sample data into the tables.
+Create a database named- "pcell". Create the SQL tables in SQL-workbench. Afterward, you can insert some sample data into the tables.
 
 SQL Schema :
 
