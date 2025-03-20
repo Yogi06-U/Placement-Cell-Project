@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles/company_dashboard.css"> <!-- Link to your custom CSS file -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container {
+            margin-top: 20px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            bottom: 0;
+            width: 100%;
+        }
+        td, th{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="/"><img src="/static/images/logo.png" alt="P Cell Logo" style="width: 50px;height: 50px;" > </a>
+        <h1>{{company['company_name']}}</h1>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <script>
+          window.onload = function() {
+            {% for category, message in messages %}
+              alert("{{ category }}: {{ message }}");
+            {% endfor %}
+          };
+        </script>
+        {% endif %} {% endwith %}
+<div class="container mt-4">
+    <section>
+        <h2>Submit Job Opening</h2>
+        <form action="/company/add_job_opening" method="POST">
+            <div class="form-group">
+                <label for="job_title">Job Role:</label>
+                <input type="text" class="form-control" id="job_title" name="job_title" required placeholder="Enter job role">
+            </div>
+            <div class="form-group">
+                <label for="job_type">Job Type:</label>
+                <input type="text" class="form-control" id="job_type" name="job_type" required placeholder="Enter job type">
+            </div>
+            <div class="form-group">
+                <label for="vacancies">Number of Vacancies:</label>
+                <input type="number" class="form-control" id="vacancies" name="vacancies" required>
+            </div>
+            <div class="form-group">
+                <label for="cgpa">Minimum CGPA Requirement:</label>
+                <input type="number" class="form-control" id="cgpa" name="cgpa" step="0.01" required placeholder="Enter minimum CGPA">
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary:</label>
+                <input type="number" class="form-control" id="salary" name="salary" required>
+            </div>
+            <div class="form-group">
+            <label for="Benefits">Benefits:</label>
+                <input type="text" class="form-control" id="Benefits" name="Benefits" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                    <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label for="Language requirement">Language requirement:</label>
+                    <input type="text" class="form-control" id="Language requirement" name="Language requirement" required>
+            </div>
+            
+           
+            <button type="submit" class="btn btn-primary">Submit Job Opening</button>
+        </form>
+    </section>
+
+    <section class="mt-4">
+        <h2>Eligible Candidates</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Email</th>
+                    <th>CGPA</th>
+                    <th>Resume</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example static data. Replace with dynamic data from the server -->
+                {% if candidates is not none %}
+                {%  for candidate in candidates  %} 
+                 <tr>
+                    <td>{{candidate['name']}}</td>
+                    <td>{{candidate['job_title']}}</td>
+                    <td>{{candidate['email']}}</td>
+                    <td>{{candidate['cgpa']}}</td>
+                    <td><a href="/static/resumes/Harsharesume1.pdf" target="_blank">View Resume</a></td>
+                 </tr>
+                {%  endfor  %}
+                {% endif %}
+                
+            </tbody>
+        </table>
+    </section>
+
+    <section class="mt-4">
+        <h2>Job Openings</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Job Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% if job_openings is not none %}
+                {%  for job_opening in job_openings  %}
+                <tr>
+                    <td>{{job_opening['job_title']}}</td>
+                    <td>{{job_opening['job_type']}}</td>
+                    
+                    <td>
+                        <form action="/close_job_opening" method="POST">
+                            <input type="hidden" name="job_id" value="{{job_opening['job_id']}}" >
+                            <button type="submit" class = "btn btn-danger">Close</button>
+                          </form>
+                    </td>
+                </tr>
+                {%  endfor  %}
+                {% endif %}
+                
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<footer>
+    <p>Company Dashboard | Placement Cell © 2024</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

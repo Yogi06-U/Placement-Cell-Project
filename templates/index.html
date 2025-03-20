@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Cell</title>
+    <link rel="stylesheet" href="/static/styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+</head>
+
+<body>
+    <header>
+        <nav class="nav row">
+            <div class="header-container row">
+                <div class="placement-logo col-3">
+                    <img src="/static/images/logo.png" alt="Placement Cell">
+                </div>
+                <div class="header-title col-3">
+                    <h1>PLACEMENT CELL</h1>
+                </div>
+                <div>
+
+                </div>
+                <div class="col-6">
+                    <ul class="nav-menu">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="/placementstats">P-cell statistics</a></li>
+                        <li><a href="/coordinator">Coordinators</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+
+    <main>
+
+        <div class="about-section">
+            <div class="about-container">
+                <div class="about-text">
+                    <h2>About Placement Cell</h2>
+                    <p>Campus recruitment is a process through which the corporate (employer) organization recruits the required talent pool from the academic campuses. The selection process takes place in the final year of a programme for students of both
+                        undergraduate and postgraduate courses. Over the years, campus recruitment has assumed greater significance in the minds of several stakeholders. The major stakeholders of the recruitment process are institutes, companies, students,
+                        and parents.</p>
+                </div>
+                <div class="about-profiles">
+                    <div class="profile">
+                        <img src="https://tse2.mm.bing.net/th?id=OIP.EISADqzH2GkyOMXApYuJGgHaE8&pid=Api&P=0&h=180" alt="Shri Mohanlal Viswanathan, IAS">
+                        <h3>Shri. Mohanlal Viswanathan, IAS</h3>
+                        <p>Additional Chief Secretary (Higher & Technical Education), Education Department.</p>
+                    </div>
+                    <div class="profile">
+                        <img src="https://tse1.mm.bing.net/th?id=OIP.qfoin3vHQTFOVXuAK1WMtQHaFj&pid=Api&P=0&h=180" alt="Shri Rajnikanth, IAS">
+                        <h3>Shri Rajnikanth, IAS</h3>
+                        <p>Commissioner, Technical Education</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        {% if recruiters is not none %}
+        <div class="recruiters-section">
+            <h2 class="recruiters-title">Recruiters</h2>
+            <div class="recruiters-container">
+
+                {%  for recruiter in recruiters  %}
+                <div class="recruiter">
+                    <img src="{{recruiter['logo_url']}}" alt="{{recruiter['company_name']}} logo">
+                    <p>{{recruiter['company_name']}}</p>
+                </div>
+                {%  endfor  %}
+                
+            </div>
+        </div>
+        {% endif %}
+
+        <h2 class="recruitment-title"  id="recruitment-title">Recruitment</h2>
+
+        <div class="description-container">
+            <div class="column student-login">
+                <h2><i class="fas fa-user-graduate"></i> Students</h2>
+                <p><strong>Join Placement Cell: Your Gateway to Success!</strong></p>
+                <p>As a student, you stand on the brink of an exciting future filled with opportunities. The Placement Cell is here to support you every step of the way on your journey toward a rewarding career.</p>
+                <p>We offer various resources including resume-building workshops, interview preparation sessions, and personalized career guidance. Our team is dedicated to helping you polish your skills and connect you with top companies in your field.
+                    Get ready to embark on an enriching experience that will help you shine in the job market!</p>
+                <div class="login-container">
+                    <a href="/student/login">Login</a>
+                </div>
+            </div>
+            <div class="column coordinator-login">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Placement Cell Coordinator</h2>
+                <p><strong>Become an Integral Part of Placement Cell: Empower Future Leaders!</strong></p>
+                <p>As a Placement Coordinator, you play a pivotal role in shaping the career paths of students and connecting them with invaluable opportunities.</p>
+                <p>Your insights and mentorship are vital in bridging the gap between education and industry. By fostering relationships with companies, you can help students secure internships and job placements that align with their aspirations. Join us
+                    in creating a nurturing environment where students can flourish and achieve their career goals!</p>
+                <div class="login-container">
+                    <a href="/coordinator/login">Login</a>
+                </div>
+            </div>
+            <div class="column company-login">
+                <h2><i class="fas fa-building"></i> Companies</h2>
+                <p><strong>Partner with Placement Cell: Connect with Tomorrow’s Talent!</strong></p>
+                <p>By partnering with our Placement Cell, you have the opportunity to engage with ambitious students eager to contribute to your organization.</p>
+                <p>Your collaboration not only helps in shaping the future workforce but also infuses fresh perspectives and innovative ideas into your company. We invite you to connect with our talented pool of students who are ready to make a significant
+                    impact. Together, we can cultivate a generation of skilled professionals who will drive your organization forward!</p>
+                <div class="login-container">
+                    <a href="company/login">Login</a>
+                </div>
+            </div>
+            <div class="column coordinator-login">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Placement Cell Head</h2>
+                <p><strong>Become an Integral Part of Placement Cell: Empower Future Leaders!</strong></p>
+                <p>As a Placement Coordinator, you play a pivotal role in shaping the career paths of students and connecting them with invaluable opportunities.</p>
+                <p>Your insights and mentorship are vital in bridging the gap between education and industry. By fostering relationships with companies, you can help students secure internships and job placements that align with their aspirations. Join us
+                    in creating a nurturing environment where students can flourish and achieve their career goals!</p>
+                <div class="login-container">
+                    <a href="/head/login">Login</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Placement Cell</h3>
+                <p>Knowledge Consortium of INDIA,<br> IIIT KOTTAYAM Campus, Opp. PRL,<br> Between Govt. and Pvt. Engineering,<br> Kottayam, Kerala, India</p>
+                <p>Email: <a href="iiitkplacementcell@gmail.com"
+                    >iiitkplacementcell@gmail.com</a></p>
+            </div>
+            <div class="footer-column">
+                <h3>Useful Links</h3>
+                <ul >
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/placementstats">P_cell statistics</a></li>
+                    <li><a href="/coordinator">Coordinators</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Important Links</h3>
+                <ul>
+                    <li><a href="/stud_signup">sign up</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <p>Visitor Count: 1088410</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Placement Cell. All rights reserved.</p>
+            <p>Designed by Placement Team | Last Updated Date: 03/10/2024</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinator Login</title>
+    <link rel="stylesheet" href="/static/styles/coordinator_login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <a href="/"><img src="/static/images/logo.png" alt="P Cell Logo" style="width: 50px;" ></a>
+        <h1>Coordinator login</h1>
+        
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <script>
+          window.onload = function() {
+            {% for category, message in messages %}
+              alert("{{ category }}: {{ message }}");
+            {% endfor %}
+          };
+        </script>
+        {% endif %} {% endwith %}
+    <main>
+        <div class="login-container">
+            <i class="fas fa-chalkboard-teacher icon"></i>
+            <h2>Coordinator Login</h2>
+            <form action="/coordinator/login" method="POST">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Placement Cell. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

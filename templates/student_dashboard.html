@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Placement Cell</title>
+    <link rel="stylesheet" href="/static/styles/student_dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <script>
+        window.onload = function() {
+          {% for category, message in messages %}
+            alert("{{ category }}: {{ message }}");
+          {% endfor %}
+        };
+      </script>
+      {% endif %} {% endwith %}
+    <header>
+      <div class="header-content">
+        <a href="/"
+          ><img
+            src="/static/images/logo.png"
+            alt="P Cell Logo"
+            class="site-logo"
+        /></a>
+        <h1>Student Dashboard</h1>
+      </div>
+      <!-- Profile logo positioned within the header on the right -->
+      <div class="profile-logo">
+        <a href="/student/profile"
+          ><img
+            src="/static/images/profile.webp"
+            alt="Profile Logo"
+            class="profile-logo"
+        /></a>
+      </div>
+    </header>
+
+    <main>
+      <div class="company-container">
+        {% if job_opening is not none %} {% for job_opening in job_openings %}
+        <div class="company">
+          <img
+            src="{{job_opening['logo_url']}}"
+            alt="{{job_opening['company_name']}}"
+          />
+          <h3><span class="company-name">{{job_opening['company_name']}}</span></h3>
+          <div class="job-title">
+            <b>Job Title:</b> {{job_opening['job_title']}}
+          </div>
+          <div class="salary-range"><b>Salary: </b>{{job_opening['salary']}}</div>
+          <div class="benefits"><b>Benefits: </b>{{job_opening['Benefits']}}</div>
+          <div class="job-type"><b>Job Type: </b>{{job_opening['job_type']}}</div>
+          <div class="languages-required">
+            <b>Location: </b>{{job_opening['location']}}
+          </div>
+
+          <form action="/enroll" method="POST">
+            <input type="hidden" name="job_id" value="{{ job_opening['job_id'] }}">
+          
+          <button type="submit" class="enroll-btn" >
+            Enroll
+          </button>
+        </form>
+        </div>
+        
+        {% endfor %} {% endif %}
+
+        
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Placement Cell. All rights reserved.</p>
+    </footer>
+
+    <script src="/static/scripts/script.js"></script>
+  </body>
+</html>

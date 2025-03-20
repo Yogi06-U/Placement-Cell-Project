@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between logo+title and profile logo */
+    background-color: #004080;
+    color: white;
+    padding: 20px;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+}
+.site-logo {
+    width: 50px;
+    height: 50px;
+}
+h1 {
+    margin-left: 15px;
+}
+.profile-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.company-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.company {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.company:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.company img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.company-name {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: black;
+    text-transform: uppercase;
+    margin: 10px 0;
+    letter-spacing: 1px;
+}
+
+.job-title,
+.salary-range,
+.benefits,
+.job-type,
+.languages-required {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.enroll-btn {
+    background-color: #0077b5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: auto;
+}
+
+.enroll-btn:hover {
+    background-color: #005582;
+    transform: translateY(-2px);
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #004080;
+    color: white;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.overlay-content {
+    background: linear-gradient(135deg, #ffffff, #e9ecef);
+    padding: 40px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #0077b5;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #005582;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #004080;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+input,
+textarea,
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #0077b5;
+    outline: none;
+}
+
+input[type="number"] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 15px;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #0077b5;
+    color: white;
+}
+
+td input[type="number"] {
+    width: 100%;
+}
+
+input[type="tel"]:invalid,
+input[type="number"]:invalid {
+    border-color: red;
+}
+
+input[type="tel"]:invalid:focus,
+input[type="number"]:invalid:focus {
+    outline: none;
+}
+
+.submit-btn {
+    background-color: #0077b5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    align-self: flex-end;
+    margin-top: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:hover {
+    background-color: #005582;
+    transform: translateY(-2px);
+}

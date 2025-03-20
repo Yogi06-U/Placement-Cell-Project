@@ -1,0 +1,181 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #004080;
+    color: white;
+    padding: 20px;
+}
+
+header .stud {
+    margin-left: 15px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 4px solid #007bff; /* Add border around profile photo */
+}
+
+.options-overlay {
+    display: none;
+    position: absolute;
+    top: 130px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.options-overlay button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+.options-overlay button:hover {
+    background-color: #0056b3;
+}
+
+.about-me {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.info-table {
+    margin-top: 20px;
+}
+
+.info-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.info-table th,
+.info-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+.info-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.info-table .display-text {
+    font-weight: bold;
+    color: #333;
+}
+
+.info-table input {
+    padding: 8px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+}
+
+.info-table button.edit-btn {
+    background-color: #007bff; /* Blue */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.info-table button.edit-btn:hover {
+    background-color: #0056b3; /* Darker blue */
+}
+
+.save-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.save-btn:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.status-table {
+    margin-top: 20px;
+}
+
+.status-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.status-table th,
+.status-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+.status-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.status-table .status.approved {
+    color: green; /* Green for approved */
+}
+
+.status-table .status.pending {
+    color: blue; /* Blue for pending */
+}
+
+.status-table .status.rejected {
+    color: red; /* Red for rejected */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #004080;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

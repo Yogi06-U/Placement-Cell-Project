@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background-color: #004080;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    background-image: url('https://tse2.mm.bing.net/th?id=OIP.8l3uESfEk6FmpYLg529fIAAAAA&pid=Api&P=0&h=180');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(1000px);
+}
+
+.icon {
+    font-size: 50px;
+    color: #4A90E2;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #4A90E2;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #4A90E2;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #357ABD;
+}
+
+p {
+    margin-top: 15px;
+}
+
+a {
+    color: #4A90E2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #004080;
+    color: white;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+.otp-container {
+    display: flex;
+    align-items: center;
+}
+
+.otp-container input {
+    flex: 1; /* Allow input to take up available space */
+    margin-right: 5px; /* Space between input and button */
+    min-width: 200px; /* Ensure the OTP field is wider */
+}
+
+.otp-button {
+    padding: 4px 8px; /* Smaller button padding */
+    font-size: 0.8em; /* Slightly smaller font size */
+    width: 80px; /* Fixed width for the button */
+    border-radius: 12px; /* Rounded edges */
+    border: none; /* Remove default border */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+}

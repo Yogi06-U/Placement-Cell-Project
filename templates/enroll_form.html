@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #004080;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        input[type="file"] {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #004080;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0059b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Job Application Form</h1>
+        <form id="enrollment-form" action="/send_application" method="post" >
+
+            <input type="hidden" id="job_id" name="job_id" value="{{job_id}}">
+            
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required />
+            
+            <label for="branch">Branch:</label>
+            <select id="branch" name="course" required>
+                <option value="">Select Branch</option>
+                <option value="Computer Science Engineering">Computer Science Engineering</option>
+                <option value="Artificial Intelligence and Data Science">Artificial Intelligence and Data Science</option>
+                <option value="Cyber Security">Cyber Security</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+            </select>
+            
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email" />
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="mobile_number" pattern="\d{10}" maxlength="10" required placeholder="10-digit phone number" />
+            
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" required placeholder="D.no, street, village, state"></textarea>
+            
+            <label for="cgpa">CGPA:</label>
+            <input type="number" id="cgpa" name="cgpa" required min="0" max="10" step="0.01" placeholder="Enter CGPA on a 10-point scale" />
+            
+            <label for="resume">Upload Resume:</label>
+            <input type="file" id="resume" name="resume" accept=".pdf, .doc, .docx" required />
+            
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

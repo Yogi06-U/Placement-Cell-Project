@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Signup</title>
+    <link rel="stylesheet" href="../static/styles/student_signup.css" />
+    <script>
+      function validatePassword() {
+          const password = document.getElementById("password").value;
+          const confirmPassword = document.getElementById("confirm_password").value;
+          if (password !== confirmPassword) {
+              document.getElementById("password_error").textContent = "Passwords do not match.";
+              return false;
+          } else {
+              document.getElementById("password_error").textContent = "";
+              return true;
+          }
+      }
+
+      function requestOTP() {
+          const email = document.getElementById("email").value;
+          if (email) {
+              fetch('http://127.0.0.1:8000/send_otp', {
+                  method: 'POST',
+                  headers: {'Content-Type': 'application/json'},
+                  body: JSON.stringify({ email: email })
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      alert('OTP sent to your email.');
+                  } else {
+                      alert('Error sending OTP. Please try again.');
+                  }
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert('Error sending OTP. Please try again.');
+              });
+          } else {
+              alert('Please enter your email first.');
+          }
+      }
+  </script>
+  </head>
+
+  <body>
+    <header>
+      <a href="/"
+        ><img
+          src="/static/images/logo.png"
+          alt="P Cell Logo"
+          style="width: 50px"
+      /></a>
+      <h1>Student Signup</h1>
+    </header>
+    <main>
+      <div class="signup-container">
+        <h2>Create an Account</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <script>
+          window.onload = function() {
+            {% for category, message in messages %}
+              alert("{{ category }}: {{ message }}");
+            {% endfor %}
+          };
+        </script>
+        {% endif %} {% endwith %}
+        <form
+          action="/student/signup"
+          method="POST"
+          onsubmit="return validatePassword()"
+        >
+          <label for="rollnumber">Roll Number:</label>
+          <input
+            type="text"
+            id="rollnumber"
+            name="rollnumber"
+            required
+            placeholder="Enter your Roll Number"
+          />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="Enter your email"
+          />
+          <!-- OTP field and Get OTP button -->
+          <label for="otp">OTP:</label>
+          <div class="otp-container">
+               <input type="text" id="otp" name="otp" required placeholder="Enter the OTP">
+               <button type="button" class="otp-button" onclick="requestOTP()">Get OTP</button>
+          </div>
+
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            minlength="8"
+            maxlength="16"
+            required
+            placeholder="Enter your password"
+          />
+
+          <label for="confirm_password">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            minlength="8"
+            maxlength="16"
+            required
+            placeholder="Confirm your password"
+          />
+
+          <p id="password_error" style="color: red"></p>
+
+          <button type="submit">Sign up</button>
+        </form>
+        <p>Already have an account? <a href="/student/login">Login</a></p>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; 2024 Placement Cell. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

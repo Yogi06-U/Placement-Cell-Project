@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #004080;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.yadu
+{
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.site-logo {
+    width: 50px;
+    height: 50px;
+}
+
+h1 {
+    margin-left: 15px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.profile-photo {
+    display: block;
+    margin: 20px auto;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.field-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.field-group label {
+    font-weight: bold;
+    flex: 1;
+}
+
+.field-group input {
+    flex: 2;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none; /* Initially hidden */
+}
+
+.field-group .display-text {
+    flex: 2;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #f1f1f1; /* Slightly different background for text */
+}
+
+.edit-btn {
+    flex: 0 0 60px;
+    margin-left: 10px;
+    padding: 6px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #004d99;
+}
+
+.save-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.save-btn:hover {
+    background-color: #218838;
+}
+
+footer {
+    background-color: #004080;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}

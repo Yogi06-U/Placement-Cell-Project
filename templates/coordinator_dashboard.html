@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coordinator Page - Placement Cell</title>
+    <link rel="stylesheet" href="/static/styles/coordinator_dashboard.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <a href="/"
+          ><img
+            src="/static/images/logo.png"
+            alt="P Cell Logo"
+            class="site-logo"
+        /></a>
+        <h1>Coordinator Dashboard</h1>
+      </div>
+      <!-- Profile logo positioned within the header on the right -->
+      <a href = "/good"><img
+        src="/static/images/profile.webp"
+        alt="Profile Logo"
+        class="profile-logo"
+      /></a>
+    </header>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %}
+        <script>
+          window.onload = function() {
+            {% for category, message in messages %}
+              alert("{{ category }}: {{ message }}");
+            {% endfor %}
+          };
+        </script>
+        {% endif %} {% endwith %}
+<main>
+    <div class="container">
+      <h2>Student Applications</h2>
+
+      <table id="applicationsTable">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Roll Number</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>CGPA</th>
+            <th>Company</th>
+            <th>Resume</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tbody>
+                {% if applications is not none %} 
+                {% for application in applications %}
+                  <tr id="app-{{ loop.index }}">
+                    <td>{{ application['student_name'] }}</td>
+                    <td>{{ application['student_id'] }}</td>
+                    <td>{{ application['email'] }}</td>
+                    <td>{{ application['branch'] }}</td>
+                    <td>{{ application['cgpa'] }}</td>
+                    <td>{{ application['company_name'] }}</td>
+                    <td>
+                      <a href="/static/resumes/Harsharesume1.pdf" target="_blank" class="resume-link">View Resume</a>
+                    </td>
+                    <td>
+                      <form action="/accept_application" method="POST">
+                        <input type="hidden" name="application_id" value="{{ application['application_id'] }}">
+                        <button type="submit" class="accept">Accept</button>
+                      </form>
+                      <form action="/reject_application" method="POST">
+                        <input type="hidden" name="application_id" value="{{ application['application_id'] }}">
+                        <button type="submit" class="reject">Reject</button>
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %} 
+                {% endif %}
+              </tbody>
+          
+        </tbody>
+      </table>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Placement Cell. All rights reserved.</p>
+</footer>
+
+  </body>
+</html>

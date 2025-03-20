@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinator Profile</title>
+    <link rel="stylesheet" href="/static/styles/coordinator_profile.css"> <!-- Link to the external CSS file -->
+</head>
+
+<body>
+    <header>
+            <a href="/coord"
+              ><img
+                src="/static/images/logo.png"
+                alt="P Cell Logo"
+                style="width: 50px"
+            /></a>
+            <h1>coordinator profile</h1>
+    </header>
+
+    <div class="container">
+        <h1>Coordinator Profile</h1>
+        <input type="file" accept="image/*" id="file-input" style="display:none;" />
+        <img src="/static/images/namit.jpg" alt="Profile Photo" class="profile-photo" id="profile-photo">
+
+        <div class="field-group">
+            <label for="firstname"><pre class="yadu">Firstname:       {{coordinator['firstname']}}</pre></label>
+        </div>
+        <div class="field-group">
+            <label for="lastname"><pre class="yadu">Lastname:        {{coordinator['lastname']}}</pre></label>
+        </div>
+
+        <div class="field-group">
+            <label for="phone"><pre class="yadu">Phone Number:      {{coordinator['mobile_number']}}</pre></label>
+        </div>
+
+        <div class="field-group">
+            <label for="email"><pre class="yadu">Email:     {{coordinator['email']}}</pre></label>
+        </div>
+
+        <div class="field-group">
+            <label for="year"><pre class="yadu">Year:       {{coordinator['year']}}</pre></label>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Company Dashboard | Placement Cell © 2024</p>
+    </footer>
+</body>
+</html>

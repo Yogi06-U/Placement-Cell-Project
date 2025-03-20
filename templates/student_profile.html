@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="/static/styles/student_profile.css" />
+    <script>
+      let profilePhotoInput;
+
+      function setupFileInput() {
+        profilePhotoInput = document.getElementById("file-input");
+        const image = document.getElementById("profile-photo");
+        const optionsOverlay = document.getElementById("options-overlay");
+
+        image.addEventListener("click", function () {
+          if (!profilePhotoInput.files.length) {
+            profilePhotoInput.click();
+          } else {
+            optionsOverlay.style.display = "block";
+          }
+        });
+
+        profilePhotoInput.addEventListener("change", function (event) {
+          if (event.target.files.length > 0) {
+            previewImage(event);
+          }
+        });
+      }
+
+      function previewImage(event) {
+        const image = document.getElementById("profile-photo");
+        image.src = URL.createObjectURL(event.target.files[0]);
+        document.getElementById("options-overlay").style.display = "none";
+        profilePhotoInput.style.display = "none";
+      }
+
+      function changeProfilePic() {
+        document.getElementById("file-input").click();
+        document.getElementById("options-overlay").style.display = "none";
+      }
+
+      function viewImage() {
+        const image = document.getElementById("profile-photo");
+        window.open(image.src, "_blank");
+        document.getElementById("options-overlay").style.display = "none";
+      }
+
+      function enableEditing(field) {
+        const input = document.getElementById(field);
+        const displayText = document.getElementById(field + "-display");
+        input.style.display = "block"; // Show input
+        input.value = displayText.innerText; // Set input value to display text
+        displayText.style.display = "none"; // Hide display text
+        input.focus();
+      }
+
+      function saveChanges() {
+        const fields = ["phone", "email", "course", "year"];
+        fields.forEach((field) => {
+          const input = document.getElementById(field);
+          const displayText = document.getElementById(field + "-display");
+
+          if (field === "phone" && input.value.length !== 10) {
+            alert("Phone number must be 10 digits.");
+            input.focus();
+            return;
+          }
+          if (field === "email" && !validateEmail(input.value)) {
+            alert("Please enter a valid email address.");
+            input.focus();
+            return;
+          }
+
+          displayText.innerText = input.value; // Update display text
+          displayText.style.display = "block"; // Show display text
+          input.style.display = "none"; // Hide input
+        });
+        alert("Profile saved successfully!");
+      }
+
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      window.onload = setupFileInput;
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <a href="/"
+        ><img
+          src="/static/images/logo.png"
+          alt="P Cell Logo"
+          style="width: 50px; height: 50px"
+        />
+      </a>
+      <h1 class="stud">Student Profile</h1>
+    </header>
+
+    <div class="container">
+      <div class="profile-header">
+        <input
+          type="file"
+          accept="image/*"
+          id="file-input"
+          style="display: none"
+        />
+        <img
+          src="https://tse1.mm.bing.net/th?id=OIP.cEvbluCvNFD_k4wC3k-_UwHaHa&pid=Api&P=0&h=180"
+          alt="Profile Photo"
+          class="profile-photo"
+          id="profile-photo"
+        />
+        <div id="options-overlay" class="options-overlay">
+          <button onclick="changeProfilePic()">Change Profile Picture</button>
+          <button onclick="viewImage()">View Image</button>
+        </div>
+      </div>
+      <div class="about-me">
+        <h1>{{student['firstname']}} {{student['lastname']}}</h1>
+        <h2>{{student['rollnumber']}}</h2>
+      </div>
+
+      <div class="info-table">
+        <h3>Profile Information</h3>
+        <form action="/student/update_info" method="post">
+          <input
+            type="hidden"
+            name="rollnumber"
+            value="{{ student['rollnumber'] }}"
+          />
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Value</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Phone Number</td>
+                <td>
+                  <div class="display-text" id="phone-display">
+                    {{student['mobile_number']}}
+                  </div>
+                  <input
+                    type="text"
+                    id="phone"
+                    value="{{student['mobile_number']}}"
+                    maxlength="10"
+                    style="display: none"
+                    name="mobile_number"
+                  />
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="edit-btn"
+                    onclick="enableEditing('phone')"
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>
+                  <div class="display-text" id="email-display">
+                    {{student['email']}}
+                  </div>
+                  <input
+                    type="text"
+                    id="email"
+                    value="{{student['email']}}"
+                    style="display: none"
+                    name="email"
+                  />
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="edit-btn"
+                    onclick="enableEditing('email')"
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Course</td>
+                <td>
+                  <div class="display-text" id="course-display">
+                    {{student['course']}}
+                  </div>
+                  <input
+                    type="text"
+                    id="course"
+                    value="{{student['course']}}"
+                    style="display: none"
+                    name="course"
+                  />
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="edit-btn"
+                    onclick="enableEditing('course')"
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>Year of Graduation</td>
+                <td>
+                  <div class="display-text" id="year-display">
+                    {{student['year_of_grad']}}
+                  </div>
+                  <input
+                    type="text"
+                    id="year"
+                    value="{{student['year_of_grad']}}"
+                    style="display: none"
+                    name="year_of_grad"
+                  />
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="edit-btn"
+                    onclick="enableEditing('year')"
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+      </div>
+
+      <div class="status-table">
+        <h3>Status Table</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>Company</th>
+              <th>Job Title</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for application in applications %}
+            <tr>
+              <td>{{loop.index }}</td>
+              <td>{{ application['company_name'] }}</td>
+              <td>{{application['job_title']}}</td>
+              <td>{{ application['status'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="4">No applications found.</td>
+            </tr>
+            {% endfor %}
+           
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Placement Cell. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
